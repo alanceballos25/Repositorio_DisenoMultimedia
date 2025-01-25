@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC HATS MÉXICO - JC Hats México</title>
+    <link rel="icon" type= "image/png"href="https://jchats.mx/cdn/shop/files/JCsLM_Mesa_de_trabajo_1_250x_2x_88c33ebe-4e33-46df-bcf1-044ca032dddc_1200x1200.png?v=1642545353">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Neuzeit Office", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            overflow-x: hidden;
+
+        }
+        html, body{
+            height: 100%;
+        }
+        .header {
+            background-color: white;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 30px;
+            padding-right: 30px;
+            border-bottom: 1px solid #ddd; 
+        }
+
+        .logo {
+            max-width: 1200px;
+            max-height: 1200px;
+            width: 190px;
+            margin-top: 0px;
+            flex-basis: 190px;
+            border: 0 none;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .logo-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        
+        .ver-todo-btn {
+            text-align: center;
+            margin-top: 30px; 
+            margin-bottom: 40px; 
+         }
+
+        .ver-todo-btn button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 10px 35px;
+            cursor: pointer;
+        }       
+
+        .menu, .seccion-header {
+            list-style-type: none;
+            display: flex;
+            margin: 15px;
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        .menu li, .seccion-header li {
+            margin-right: 20px;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-actions button {
+            margin-left: 10px;
+        }
+
+        .anuncio-barra {
+            background-color: #000000;
+            color: #bf8b07;
+            text-align: center;
+            padding: 10px;
+            min-height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .anuncio-barra .anuncio-barra-mensaje{
+            width: 80%;
+            order: 1;
+            padding-left: 20%;
+            padding-right: -20%;
+            display: block;
+        }
+        .clearfix {
+            display: flex;
+            list-style: none;
+            padding-right: 30px;
+            align-items: center;
+        }
+        .anuncio-barra #logos-container {
+            text-align: center ;
+            padding: 0;
+            width: auto;
+            margin: -2px auto 0 auto;
+            opacity: 1;
+        }
+        .anuncio-barra #logos-container {
+            max-width: 20%;
+            order: 2;
+            text-align: right;
+            padding-right: 10px;
+            margin-right: 0;
+        }
+        
+        .clearfix ul {
+            display: flex;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+            list-style: none;
+            justify-content: center;
+        }
+
+        .logo-button {
+            background: none;
+            border: none;
+            padding: 10px;
+            margin-right: 5px;
+            cursor: pointer;
+        
+        }
+
+        .logo-button img {
+            width: 14px; 
+            height: auto;
+            margin-right: 15px; 
+        }
+        
+        .custom-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            max-height: 2000px; 
+        }
+
+        .custom-carousel img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .custom-carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1;
+        }
+        
+
+        .custom-carousel-control {
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .custom-carousel-prev {
+            order: 1;
+        }
+
+        .custom-carousel-next {
+            order: 2;
+        }
+
+        .producto-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .producto {
+            width: 18%;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .estado-agotado {
+            position: absolute;
+            top: 10%;
+            left: 18%;
+            transform: translate(-50%, -50%);
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            opacity: 0.7; 
+            display: none;
+            font-size: 11px;
+            font-weight: 700px;
+            line-height: 14px;
+            text-transform: uppercase;
+            z-index: 4;
+        
+        }
+
+        .producto:has(.agregar-agotado[disabled]) .estado-agotado {
+            display: block; 
+        }
+
+
+        .producto img {
+            width: 100%;
+            height: auto;
+        }
+
+        .producto-info {
+            margin-top: 10px;
+        }
+
+        .agregar-carrito {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .agregar-agotado{
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 50px;
+            margin-top: 10px;
+        }
+       .agregar-agotado:disabled{
+            opacity: 0.5;
+       }
+        .seccion-imagenes {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 0;
+        }
+
+        .imagen-lado {
+            width: 45%; 
+            text-align: center; 
+            display: block;
+            width: 100%;
+            border: 0 none;
+            margin-right: 0px;
+            margin-bottom: -20px;
+        }
+
+        .imagen-lado img {
+            max-width: 100%; 
+            max-height: 1600px;
+        }
+
+        .boton-imagen {
+            margin-top: -10px;
+        }
+        
+        .carrusel {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .carrusel img {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            max-height: 2000px;
+        }
+        .titulo-imagen {
+            margin-top: -18%; 
+        }
+
+        .boton-imagen {
+            margin-top: -18%; 
+            background-color: black; 
+            color: white; 
+            padding: 10px 20px; 
+            border: none; 
+            cursor: pointer; 
+        }
+        .seccion-imagenes{
+            margin-bottom: 0px;
+        }
+
+        footer {
+            background-color: black;
+            text-align: center;
+            padding: 70px;
+            margin-bottom: 15px;
+            color: #bf8b07;
+        }
+
+        .colaboraciones {
+            text-align: center;
+        }
+
+        .imagenes-footer img {
+            width: 100px;
+            margin-right: 60px;
+        }
+
+        .secciones-footer {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .seccion-footer {
+            text-align: center;
+        }
+
+        .seccion-footer h3 {
+            color: #bf8b07;
+        }
+
+        .seccion-footer ul {
+            list-style-type: none;
+            color: #bf8b07;
+            padding: 0;
+            margin: 0;
+        }
+
+        .seccion-footer ul li {
+            margin-bottom: 5px;
+        }
+
+        .seccion-footer p {
+            color: #bf8b07;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .seccion-footer input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .menu-doble{
+            padding: 1px;
+        }
+
+        .boton-lupa{
+            width: 30px; 
+            height: 20px;
+            border: none; 
+            background: none;
+            padding: 2;
+            margin: 2; 
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .imagen-lupa{
+            width: 100%; 
+            height: 100%;
+        }
+
+        .boton-usuario{
+            width: 30px; 
+            height: 20px;
+            border: none; 
+            background: none;
+            padding: 2;
+            margin: 2; 
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .imagen-usuario{
+            width: 100%; 
+            height: 100%;
+        }
+
+        .boton-carrito{
+            width: 30px; 
+            height: 20px;
+            border: none; 
+            background: none;
+            padding: 2;
+            margin: 2; 
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .imagen-carrito{
+            width: 100%; 
+            height: 100%;
+        }
+        .marca-registrada{
+            margin-top: 150px;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .formulario-suscripcion{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+        .formulario-suscripcion input{
+            padding: 8px;
+            margin-bottom: -50 px;
+            background-color: #000000;
+            border: none;
+            color: #bf8b07;
+            border-bottom: 1px solid #bf8b07;
+            outline: none;
+            width: 250px;
+        }
+        .boton-imagen negro{
+            padding: 10px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            
+        }
+       
+        .menu-doble ul ul {
+            display: none;
+        }
+
+        .menu-doble ul li a{
+            text-decoration: none;
+            color: #000;
+        }
+        .menu-doble ul li.menu-desplegable::after {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 8px solid #000; 
+            margin-left: 5px; 
+        }
+
+       
+        .menu-doble ul li:hover > ul {
+            display: block;
+            position: absolute;
+        }
+        
+        .menu-doble ul{
+            font-family: "Neuzeit Office", sans-serif;
+        }
+        
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="anuncio-barra">
+        <div class="anuncio-barra-mensaje"> NUEVOS DISEÑOS "NIEVE BLANCA" YA DISPONIBLE</div>
+        <ul id="logos-container" class="clearfix" >
+            <li class="logo-button"><img src="facebook.png" alt="Logo 1"></li>
+            <li class="logo-button"><img src="instagram.png" alt="Logo 2"></li>
+            <li class="logo-button"><img src="tiktok.png" alt="Logo 3"></li>
+        </ul>
+    </div>
+    
+    <div class="header">
+        <div class="menu-doble">
+            <div class="menu-desplegable">
+                <ul class="menu">
+                    <li>INICIO</li>
+                    <li>SUCURSALES JC HATS</li>
+                    <li>REBAJAS</li>
+                    <li class="menu-desplegable">
+                        <a href="#">PRODUCTOS</a>
+                       
+                        <ul>
+                            <li><a href="#">GORRAS</a></li>
+                            <li><a href="#">CAP CARRIER </a></li>
+                            <li><a href="#">PINES</a></li>
+                            <li><a href="#">JC BRUSH</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu-desplegable">
+                <ul class="seccion-header">
+                    <li class="menu-desplegable">
+                        <a href="#">TIPO DE GORRAS</a>
+                        
+                        <ul>
+                            <li><a href="#">PLANAS</a></li>
+                            <li><a href="#">CURVAS</a></li>
+                            <li><a href="#">MALLA</a></li>
+                        </ul>
+                    </li>
+                    <li>MODELOS DISPONIBLES</li>
+                </ul>
+            </div>
+        </div>
+        <div class="logo-container">
+            <img class="logo" src="LOGO-JCHATSNEGRO_1000x1000.webp" alt="Logo JC HATS">
+        </div>
+        <div class="user-actions">
+            <button class="boton-lupa">
+                <img class="imagen-lupa" src="lupa.png" alt="imagen lupa">
+            </button>
+            <button class="boton-usuario">
+                <img class="imagen-usuario" src="usuario.png" alt="imagen usuario">
+            </button>
+            <button class="boton-carrito">
+                <img class="imagen-carrito" src="carrito-de-compras.png" alt="imagen carrito">
+            </button>
+        </div>
+    </div>
+    <div class="custom-carousel">
+        <div class="custom-carousel-controls">
+            <button class="custom-carousel-control custom-carousel-prev" onclick="changeSlide(-1)">‹</button>
+            <button class="custom-carousel-control custom-carousel-next" onclick="changeSlide(1)">›</button>
+        </div>
+        <img class="d-block w-100" src="https://jchats.mx/cdn/shop/files/BANNER_JC_FULL_2000_X_900_2.png?v=1706903552" alt="Imagen Principal">
+        <img class="d-block w-100" src="https://jchats.mx/cdn/shop/files/BANNER_JC_FULL_2000_X_900.png?v=1706903597" alt="Imagen Principal 2">
+    </div>
+
+    <div class="producto-container">
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/3_591c80e0-d794-4dc0-bd74-6ecc6eef555f.jpg?v=1706204886" alt="Producto 1">
+            <div class="producto-info">
+                <p>JC FULL BEIGE/BROWN</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/3_6ccd0d36-2ead-4357-bc04-e1a2eb782e74.jpg?v=1706204003" alt="Producto 2">
+            <div class="producto-info">
+                <p>JC FULL BEIGE/NAVY</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/3_7b63e011-5d9f-4dd1-8ddd-0fdbe8c13598.jpg?v=1706205053" alt="Producto 3">
+            <div class="producto-info">
+                <p>JC FULL BLACK/BROWN</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/3_440fd9db-11f2-44e7-835f-04472cd2e253.jpg?v=1706204156" alt="Producto 4">
+            <div class="producto-info">
+                <p>JC FULL BLACK/NEON</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/3_9bf78352-42e2-4cdd-8df1-2c4bcf3e691c.jpg?v=1706569742" alt="Producto 5">
+            <div class="producto-info">
+                <p>JC FULL BROWN</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+    </div>
+
+    <div class="ver-todo-btn">
+        <button>Ver Todo</button>
+    </div>
+
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/BANNER_JC_FULL_2000_X_900_2.jpg?v=1706831147" alt="Imagen Carrusel 6">
+    </div>
+
+    <div class="producto">
+        <img src="https://jchats.mx/cdn/shop/files/1_c7d9591f-f593-4728-beee-ad2453f88f6f.jpg?v=1706820080" alt="JC BRUSH">
+        <div class="producto-info">
+            <p>JC BRUSH</p>
+            <p>Precio: $199.00</p>
+        </div>
+        <button class="agregar-carrito">Agregar al Carrito</button>
+    </div>
+
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/BANNER_MOVIL_27266938-536e-48e0-8726-08089d6cbc93.png?v=1705612045" alt="Imagen Carrusel 3">
+    </div>
+
+    <div class="producto">
+        <img src="https://jchats.mx/cdn/shop/files/6_9238b6b5-b2df-4882-b1cf-cf4f2939fe9e.jpg?v=1705085328" alt="Producto Adicional">
+        <div class="producto-info">
+            <p>PURO CAMPEON</p>
+            <p>Precio: $850.00</p>
+        </div>
+        <button class="agregar-carrito">Agregar al Carrito</button>
+    </div>
+    
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/Banner_WEB.jpg?v=1704231911" alt="Imagen Carrusel 4">
+    </div>
+    <div class="producto-container">
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45grados_6481a970-2745-49f3-b453-43b78b319220.jpg?v=1703952263" alt="Producto 1">
+            <div class="producto-info">
+                <p>BUSINESSMAN BLACK</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_1e5864d2-3a71-48a1-8195-3ffbb3b715b3.jpg?v=1703952847" alt="Producto 2">
+            <div class="producto-info">
+                <p>BUSINESSMAN BLUE/BLACK</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45grados_5e100ab3-7d39-4dbb-8a19-6c6e279da7b6.jpg?v=1703953730" alt="Producto 3">
+            <div class="producto-info">
+                <p>BUSINESSMAN BURGUNDY</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45grados_ab4a54cf-111b-4dbd-9e1e-5b1ee71aff72.jpg?v=1703954101" alt="Producto 4">
+            <div class="producto-info">
+                <p>BUSINESSMAN RED</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_c32ec996-68b2-451c-928d-ba2e10e1cc8e.jpg?v=1703954301" alt="Producto 5">
+            <div class="producto-info">
+                <p>BUSINESSMAN WHITE</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+
+        </div>
+
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_293577bc-af7e-49d4-abc8-fe819098b19d.jpg?v=1703954788" alt="Producto 5">
+            <div class="producto-info">
+                <p>BUSINESSMAN YELLOW</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+            
+        </div>
+    </div>
+
+    <div class="ver-todo-btn">
+        <button>Ver Todo</button>
+    </div>
+    
+
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/Banner_Web_EL_BUHO.jpg?v=1702061352" alt="Colab Luis R ">
+    </div>
+    <div class="producto">
+        <div class="estado-agotado">Agotado</div>
+        <img src="https://jchats.mx/cdn/shop/files/6_f352a0ed-bca9-4089-a15f-c139295cbaad.jpg?v=1700758923" alt="Colab Luis R">
+        <div class="producto-info">
+            <p>EL BUHO</p>
+            <p>Precio: $850.00</p>
+        </div>
+        <button class="agregar-agotado" disabled>Agotado</button>
+    </div>
+
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/Jc_Cartoon_Banner_WEB.jpg?v=1699643874" alt="Imagen Carrusel 4">
+    </div>
+    <div class="producto-container">
+        <div class="estado-agotado">Agotado</div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/3.jpg?v=1699383087" alt="Producto 1">
+            <div class="producto-info">
+                <p>JC CARTOON BLACK</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-agotado" disabled >Agotado</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/3_d6e85ea3-45e7-4d3d-850c-4635a097a5cf.jpg?v=1699387135" alt="Producto 2">
+            <div class="producto-info">
+                <p>JC CARTOON WHITE</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45grados_d744a87e-1d2d-47bd-8b75-ae189626ead8.jpg?v=1699384667" alt="Producto 3">
+            <div class="producto-info">
+                <p>JC CARTOON RED</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45grados_2348cabd-215c-420f-a570-fcf969b7b035.jpg?v=1699384174" alt="Producto 4">
+            <div class="producto-info">
+                <p>JC CARTOON BLUE</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45grados_9be77a54-9417-4d01-91df-ebb70f9179df.jpg?v=1699384345" alt="Producto 5">
+            <div class="producto-info">
+                <p>JC CARTOON BURGUNDY</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+
+        </div>
+    </div>
+
+    <div class="ver-todo-btn">
+        <button>Ver Todo</button>
+    </div>
+
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/BANNER_2000X900_1_d26a9256-5210-4b52-8e36-fbfbac8081d3.png?v=1698362021" alt="Imagen Carrusel 4">
+    </div>
+    <div class="producto-container">
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_1680x.jpg?v=1697131821" alt="Producto 1">
+            <div class="producto-info">
+                <p>NEVER LOOK BACK BLACK</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_d36f5206-64f1-481f-859f-60ccecbdded8_1680x.jpg?v=1697133020" alt="Producto 2">
+            <div class="producto-info">
+                <p>NEVER LOOK BACK WHITE</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_c12d1df5-a171-45fa-997c-a6d92c39db4e_1680x.jpg?v=1697133657" alt="Producto 3">
+            <div class="producto-info">
+                <p>NEVER LOOK BACK ORANGE</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_b1789ba7-a613-464f-a0b7-d39d78fc891f_1680x.jpg?v=1697132360" alt="Producto 4">
+            <div class="producto-info">
+                <p>NEVER LOOK BACK GRAY</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_93ce22e8-eea9-4864-8390-804dacb97a5e_1680x.jpg?v=1697133508" alt="Producto 5">
+            <div class="producto-info">
+                <p>NEVER LOOK BACK GREEN</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+
+        </div>
+
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_d53b5a73-e3d3-4e08-a4d5-2c3e6f8cd681_1680x.jpg?v=1697133325" alt="Producto 5">
+            <div class="producto-info">
+                <p>NEVER LOOK BACK BLUE</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+
+        </div>
+
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_a5e1a446-af23-4894-8ae7-dba497c24c83_1680x.jpg?v=1697132926" alt="Producto 5">
+            <div class="producto-info">
+                <p>NEVER LOOK BACK OLIVE GREEN</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/45GRADOS_9decf4b7-1db0-4ee8-83ca-6b7dbb5f94bf_1680x.jpg?v=1698191808" alt="Producto 5">
+            <div class="producto-info">
+                <p>NEVER LOOK BACK RED</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+
+        </div>
+        <div class="producto">
+        </div>
+        <div class="producto">
+        </div>
+    </div>
+
+    <div class="ver-todo-btn">
+        <button>Ver Todo</button>
+    </div>
+    
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/deportivo_2.jpg?v=1697756274" alt="Colab Mole ">
+    </div>
+    
+    <div class="producto">
+        <div class="estado-agotado">Agotado</div>
+        <img src="https://jchats.mx/cdn/shop/files/45GRADOS_48755713-28c9-4717-911a-c4e740a57e5e_1445x.png?v=1694548072" alt="Colab Mole">
+        <div class="producto-info">
+            <p>EL DEPORTIVO BLACK</p>
+            <p>Precio: $850.00</p>
+        </div>
+        <button class="agregar-agotado" disabled>Agotado</button>
+    </div>
+        
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/Banner_Web_Poker_Camo.jpg?v=1695756937" alt="Imagen Carrusel 4">
+    </div>
+    
+    <div class="producto-container">
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/FRONTAL_1b4444d7-78a0-4230-a020-1f782e8514f0_1445x.png?v=1695672812" alt="Producto 1">
+            <div class="producto-info">
+                <p>POKER CAMO BLUE/RED</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/FRONTAL_893e59e1-739a-48e0-9d8f-f2d2865eee3c_1445x.png?v=1695678987" alt="Producto 1">
+            <div class="producto-info">
+                <p>POKER CAMO RED</p>
+                <p>Precio: $799.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/products/FRONTAL_cb285084-ff91-402a-9d49-627e14714cc8_1445x.png?v=1678995677" alt="Producto 1">
+            <div class="producto-info">
+                <p>POKER CAMO BURGUNDY</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/products/FRONTAL_1_1445x.png?v=1678996879" alt="Producto 1">
+            <div class="producto-info">
+                <p>POKER CAMO BLACK YELLOW</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/products/FRONTAL_4_1445x.png?v=1679066056" alt="Producto 1">
+            <div class="producto-info">
+                <p>POKER CAMO SAND</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/POKERCAMO-RENOVADA2.1-GORRAS-SKU1188_1_1445x.png?v=1688052941" alt="Producto 1">
+            <div class="producto-info">
+                <p>POKER CAMO</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/FRONTAL_dd080030-3f71-4343-99b2-2264053d8b44_1445x.png?v=1695672479" alt="Producto 1">
+            <div class="producto-info">
+                <p>POKER CAMO BROWN</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/FRONTAL_3d278451-37ae-486f-be13-c1508919d9f8_1445x.png?v=1695677871" alt="Producto 1">
+            <div class="producto-info">
+                <p>POKER CAMO AQUA</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/FRONTAL_6e0447c3-d126-434e-acd1-cc63fa6da9f8_1445x.png?v=1695671442" alt="Producto 1">
+            <div class="producto-info">
+                <p>POKER CAMO YELLOW</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/products/FRONTAL_3_1445x.png?v=1678998332" alt="Producto 10">
+            <div class="producto-info">
+                <p>POKER CAMO WHITE BLACK</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+    </div>
+    
+    <div class="ver-todo-btn">
+        <button>Ver Todo</button>
+    </div>
+
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/JUNIORH-WEB...png?v=1691697148" alt="Colab Junior H ">
+    </div>
+    
+    <div class="producto">
+        <div class="estado-agotado">Agotado</div>
+        <img src="https://jchats.mx/cdn/shop/files/45GRADOSDER_1680x.png?v=1691625361" alt="Colab Junior H">
+        <div class="producto-info">
+            <p>JUNIOR H BLACK/PURPLE</p>
+            <p>Precio: $700.00</p>
+        </div>
+        <button class="agregar-agotado" disabled>Agotado</button>
+    </div>
+
+    <div class="carrusel">
+        <img src="https://jchats.mx/cdn/shop/files/food_money_1.jpg?v=1697756582" alt="Imagen Carrusel 4">
+    </div>
+    
+    <div class="producto-container">
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/1_02ae2cfe-a511-425c-a9a2-603463a83073.jpg?v=1708106729" alt="Producto 1">
+            <div class="producto-info">
+                <p>NIEVE BLANCA GREEN</p>
+                <p>Precio: $799.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/1_48c1fc18-9ce3-4c9c-9754-2d6e24f2e139.jpg?v=1708106627" alt="Producto 1">
+            <div class="producto-info">
+                <p>NIEVE BLANCA BLACK AND WHITE</p>
+                <p>Precio: $799.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/1_04c94386-d585-446e-acf1-59c309ddf0d2.jpg?v=1708106064" alt="Producto 1">
+            <div class="producto-info">
+                <p>ICE CREAM WHITE</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/JCPIZZARED-FOODMONEY-GORRA-SKU1654_1_1445x.png?v=1688082372" alt="Producto 1">
+            <div class="producto-info">
+                <p>JC PIZZA RED</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/JCPIZZABLACK-FOODMONEY-GORRA-SKU1653_1_1445x.png?v=1688081676" alt="Producto 1">
+            <div class="producto-info">
+                <p>JC PIZZA BLACK</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/JCPIZZABLUENAVY-FOODMONEY-GORRA-SKU1655_1_1445x.png?v=1688080961" alt="Producto 1">
+            <div class="producto-info">
+                <p>JC PIZZA BLUE NAVY</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <div class="estado-agotado">Agotado</div>
+            <img src="https://jchats.mx/cdn/shop/files/JCFRIESBLACK-FOODMONEY-GORRAS-SKU1663_1_1445x.png?v=16880790351" alt="Producto 1">
+            <div class="producto-info">
+                <p>JC PIZZA FRIES BLACK</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-agotado" disabled>Agotado</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/JCFRIESGRAY-FOODMONEY-GORRAS-SKU1664_1_1445x.png?v=1688078299" alt="Producto 1">
+            <div class="producto-info">
+                <p>JC PIZZA FRIES GRAY</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/JCDOGSGREEN-FOODMONEY-GORRAS-SKU1647_1_1445x.png?v=1688076932" alt="Producto 1">
+            <div class="producto-info">
+                <p>JC DOGS GREEN</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+        <div class="producto">
+            <img src="https://jchats.mx/cdn/shop/files/JCDOGSBLACK-FOODMONEY-GORRA-SKU1646_1_1445x.png?v=1688075980" alt="Producto 10">
+            <div class="producto-info">
+                <p>JC DOGS BLACK</p>
+                <p>Precio: $749.00</p>
+            </div>
+            <button class="agregar-carrito">Agregar al Carrito</button>
+        </div>
+    </div>
+    
+    <div class="ver-todo-btn">
+        <button>Ver Todo</button>
+    </div>
+   
+<div class="seccion-imagenes">
+    <div class="imagen-lado">
+        <img src="https://jchats.mx/cdn/shop/files/Prueba_para_web_granada_2_1445x.jpg?v=1693245936" alt="Primera Imagen">
+        <h2 class="titulo-imagen">COLECCION GRANADA </h2>
+        <button class="boton-imagen negro">PEDIR AHORA</button>
+    </div>
+    <div class="imagen-lado">
+        <img src="https://jchats.mx/cdn/shop/files/Cap_carrier_1_1445x.jpg?v=1693245389" alt="Segunda Imagen">
+        <h2 class="titulo-imagen">CAP CARRIER </h2>
+        <button class="boton-imagen">COMPRAR AHORA</button>
+    </div>
+</div>
+<div class="seccion-imagenes">
+    <div class="imagen-lado">
+        <img src="https://jchats.mx/cdn/shop/files/Jc_Hats_-_el_rey_del_pop_-_BANNER_pag_web_-_Gorras_1445x.jpg?v=1690397050" alt="Primera Imagen">
+        <h2 class="titulo-imagen">EL REY DEL POP </h2>
+        <button class="boton-imagen negro">ADQUIERELA HOY</button>
+    </div>
+    <div class="imagen-lado">
+        <img src="https://jchats.mx/cdn/shop/files/Jc_Hats_-_Savage_Animals_-_BANNER_pag_web_-_Gorras_1445x.jpg?v=1690238704" alt="Segunda Imagen">
+        <h2 class="titulo-imagen">CAP CARRIER </h2>
+        <button class="boton-imagen">OBTEN LA TUYA AHORA</button>
+    </div>
+</div>
+<div class="seccion-imagenes">
+    <div class="imagen-lado">
+        <img src="https://jchats.mx/cdn/shop/files/Jc_Hats_-_jc_classic_2_-_BANNER_pag_web_-_Gorras_1445x.jpg?v=1690397204" alt="Primera Imagen">
+        <h2 class="titulo-imagen">COLECCIÓN JC CLASSIC </h2>
+        <button class="boton-imagen negro">COMPRAR AHORA</button>
+    </div>
+    <div class="imagen-lado">
+        <img src="https://jchats.mx/cdn/shop/files/Prueba_para_web_Diseno_Money_Edition_1445x.jpg?v=1693342685" alt="Segunda Imagen">
+        <h2 class="titulo-imagen">COLECCIÓN MONEY EDITION </h2>
+        <button class="boton-imagen">CONOCE LOS NUEVOS MODELOS</button>
+    </div>
+</div>
+<footer>
+    <div class="colaboraciones">
+        <h2>COLABORACIONES</h2>
+    </div>
+    <div class="imagenes-footer">
+        <img src="https://jchats.mx/cdn/shop/files/IMG_5350_1445x.png?v=1628616997" alt="Imagen 1">
+        <img src="https://jchats.mx/cdn/shop/files/IMG_0271_1445x.jpg?v=1641926849" alt="Imagen 2">
+        <img src="https://jchats.mx/cdn/shop/files/IMG_3023_1445x.png?v=1626224509" alt="Imagen 3">
+        <img src="https://jchats.mx/cdn/shop/files/IMG_1674_1445x.jpg?v=1641926929" alt="Imagen 4">
+        <img src="https://jchats.mx/cdn/shop/files/IMG_3020.jpg?v=1626225165" alt="Imagen 5">
+        <img src="https://jchats.mx/cdn/shop/files/IMG_3018.jpg?v=1626225143" alt="Imagen 6">
+        <img src="https://jchats.mx/cdn/shop/files/IMG_3014.jpg?v=1626225013" alt="Imagen 7">
+        <img src="https://jchats.mx/cdn/shop/files/IMG_3021.jpg?v=1626225086" alt="Imagen 8">
+    </div>
+
+    <div class="secciones-footer">
+        <div class="seccion-footer">
+            <h3>Enlaces</h3>
+            <ul class="Enlaces">
+                <li>PREGUNTAS FRECUENTES</li>
+                <li>POLÍTICAS DE ENVIOS</li>
+                <li>POLÍTICAS DE CAMBIO</li>
+                <li>ACERCA DE NOSOTROS</li>
+            </ul>
+        </div>
+    
+        <div class="seccion-footer">
+            <h3>Suscríbete</h3>
+            <p>Déjanos tu correo electrónico para poder mandarte nuevas</p>
+            <p>promociones o colaboraciones directamente a tu buzón de correo</p>
+            <p>electrónico</p>
+            <div class="formulario-suscripcion">
+                <input type="email" id="correo" name="correo" >
+                
+            </div>
+            <button class="boton-imagen negro">Suscribir</button>
+        </div>
+        
+    
+        <div class="seccion-footer">
+            <h3>Contacto</h3>
+            <p>JCHATSBRANDMX@GMAIL.COM</p>
+            <p>WhatsApp: 6672746226</p>
+        </div>
+    </div>
+    <p class="marca-registrada">© 2024, JC Hats México | Tecnología de Shopify</p>
+</footer>
+
+    <script>
+        let currentSlide = 2;
+
+        function changeSlide(n) {
+            showSlide(currentSlide += n);
+        }
+
+        function showSlide(n) {
+            let slides = document.querySelectorAll('.custom-carousel img');
+
+            if (n > slides.length) {
+                currentSlide = 1;
+            } else if (n < 1) {
+                currentSlide = slides.length;
+            }
+
+            slides.forEach(slide => slide.style.display = 'none');
+            slides[currentSlide - 1].style.display = 'block';
+        }
+
+        changeSlide(1)
+    </script>
+</body>
+</html>
+
+
+
+
+

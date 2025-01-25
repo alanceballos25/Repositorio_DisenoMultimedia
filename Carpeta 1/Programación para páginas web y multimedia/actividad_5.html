@@ -1,0 +1,183 @@
+<!-- Nombre: Alan Ceballos Moreno
+      Nombre del Profesor: Antonio de Jésus Campos Avila
+      Actividad: Actividad 5
+      Matricula: 2904273 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Actividad 5</title>
+
+    <style>
+        body{
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Formulario con dos campos de texto, dos radios y un rango -->
+        <form>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido">
+            </div>
+
+            <div class="form-group">
+                <label>Género:</label>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="generoMasculino" name="genero" class="custom-control-input">
+                    <label class="custom-control-label" for="generoMasculino">Masculino</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="generoFemenino" name="genero" class="custom-control-input">
+                    <label class="custom-control-label" for="generoFemenino">Femenino</label>
+                </div> 
+            </div>
+            
+            <div class="form-group">
+                <label for="calificacion">Calificación (0-10): <span id="calificacionValor">0</span></label>
+                <input type="range" class="form-control-range" id="calificacion" min="0" max="10" oninput="document.getElementById('calificacionValor').textContent = this.value">
+            </div>
+
+            <button type="submit" class="btn btn-dark">Enviar</button>
+        </form>
+
+        <!-- Componente colapsable -->
+        <div class="mt-3">
+            <p class="d-inline-flex gap-1">
+                <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">¿Que son los Corridos tumbados?</a>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Exponentes del Género</button>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Mostrar todo</button>
+            </p>
+
+            <div class="row mt-2">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <div class="card card-body">
+                            Los llamados corridos tumbados son un subgénero musical derivado del corrido, aunque estos poseen tintes de música urbana como rap, hip-hop, trap y e incluso reguetón, además de que las letras son explícitas y hacen apología a distintos delitos, como el tráfico de drogas, robo o uso de armas, por mencionar algunos.
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                        <div class="card card-body">
+                            <ul>
+                                <li>Natanael Cano</li>
+                                <li>Peso Pluma</li>
+                                <li>Junior H</li>
+                                <li>Adriel Favela</li>
+                                <li>Ovi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <button type="button" class="btn btn-primary mt-4" data-toggle="modal" data-target="#exampleModal">
+            Abrir Modal
+        </button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Temas más escuchados de Junior H </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>El azul</li>
+                            <li>Ella</li>
+                            <li>Se Amerita</li>
+                            <li>Mente Positiva</li>
+                            <li>Disfruto Lo Malo</li>
+                            <li>1004 Kilómetros</li>
+                            <li>Los Botones Azules</li>
+                            <li>Atrapado en un Sueño</li>
+                            <li>Y LLORO</li>
+                            <li>Intro</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acordeón -->
+        <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                  Biografía de Natanael Cano
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                  <strong>Biografía:</strong> Nacido en Hermosillo, Sonora, el 27 de marzo de 2001, Natanael Cano desde chiquillo mostró interés por la música. Con tan solo 9 años, empezó a cantar y tocar la guitarra en reuniones familiares motivado por su papá. A los 10-11 años comenzó a hacer música.
+
+                  Fue en la adolescencia, cuando estaba en la preparatoria, que dio un primer e importante paso en su carrera al empezar a cantar y tocar en la escena underground. En ese entonces, Cano abandonó sus estudios para seguir la carrera y se mudó a Estados Unidos.
+                  
+                  Las principales inspiraciones e influencias en la carrera de Natanael Cano fueron los cantantes Ariel Camacho y Chalino Sánchez, importantes nombres de la música mexicana.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    ¿Cómo llegó a la fama Natanael Cano?
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                  <strong>Carrera Musical: </strong> La carrera musical de Natanael Cano empezó en 2018 al unirse a Five Music, una disquera independiente. Junto a esa disquera, el cantante lanzó algunos sencillos.
+
+                  Si te preguntas cuál fue la primera canción de Natanael Cano, pues su debut fue el tema El de Los Lentes Gucci, de 2018.
+                  
+                  Tras lanzar cinco sencillos junto a Five Music, Cano firmó con otra disquera, La R Records, con la que sacó su primer álbum de estudio, Todo es Diferente.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="aaccordion-button btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    ¿Qué ha logrado Natanael Cano?
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+                  <strong>Logros de Natanael Cano:</strong> Ya sabes que Natanael Cano es un bombazo en las redes y tiene un montón de fans. Pero, quizás, aún no sabes que el cantante ya acumula grandes éxitos, logros y colaboraciones destacadas.
+
+                  Además de la remix con Bad Bunny en 2019, Cano también ya se unió a cantantes como Alejandro Fernández, Dan Sánchez, Tokischa y Steve Aoki.
+                  
+                  Una de las colaboraciones más recientes fue con Peso Pluma y Gabito Ballesternos en la canción AMG, estrenada en 2023. ¡El sencillo debutó en el lugar 92 en la lista Hot 100 de Billboard y llegó a estar en el puesto 40!
+                  
+                  
+                  El cantante incluso ha estado numerosas veces en la lista Hot Latin Songs de Billboard, lo que muestra su gran influencia en la escena actual.
+                  
+                  Natanael Cano también ha sido nominado a premios importantes desde que salió a la luz su colaboración con Bad Bunny. En 2021, fue el ganador de Canción Favorita en los Latin American Music Awards, con la canción Amor Tumbado.
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <!-- Enlaces a archivos JS necesarios para el funcionamiento de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

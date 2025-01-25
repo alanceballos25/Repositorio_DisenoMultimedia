@@ -1,0 +1,11 @@
+body{
+    background-color: lightblue;
+    font-size: 10px;
+}
+
+p{
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    /* El valor nos indica un tamaño en relación al padre */
+    font-size: 1.2cm;
+}

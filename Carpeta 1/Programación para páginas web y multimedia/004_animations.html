@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaciones</title>
+    <style>
+        .square { 
+            margin: 4px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 10px;
+            transition-property: background-color, transform;
+            transition-duration: 2s;
+        }
+
+        .square:hover {
+            background-color: yellow;
+            transform: rotate(45deg);
+        }
+
+        @keyframes colors {
+            0% { background-color: red; }
+            20% { background-color: orange; }
+            40% { background-color: yellow; }
+            60% { background-color: green; }
+            80% { background-color: blue; }
+            100% { background-color: purple; }
+        }
+
+        .square_animated { 
+            margin: 4px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 10px;
+            animation-name: colors;
+            animation-duration: 10s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        /* mesa de billar */
+
+        #pool_table{
+            width: 340px;
+            height: 200px;
+            border-radius: 5px;
+            background-color: green;
+        }
+
+        #ball {
+
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: white;
+            position: relative;
+            left: 0px;
+            top:0px 
+           
+        }
+
+        @keyframes ball_movement{
+            0% {
+                left: 0px;
+                top: 0px;
+            }
+            33% {
+                left: 100px;
+                top: 160px;
+            }
+            66% {
+                left: 200px;
+                top: 0px;
+            }
+            100% {
+                left: 300px;
+                top: 160px;
+            }
+        }
+        
+        #ball.animate{
+            animation: ball_movement 5s linear infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <div class="square"></div>
+    <div class="square_animated"></div>
+
+    <!-- mesa de billar -->
+    <div id="pool_table">
+        <div id="ball" class="animate"></div>
+    </div>
+</body>
+</html>
