@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .interactivo-boton {
+            display: inline-block;
+            padding: 20px 40px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #3498db;
+            border-radius: 10px;
+            transition: background-color 0.5s, color 0.5s;
+            margin-bottom: 20px;
+        }
+
+        .interactivo-boton:hover {
+            background-color: red;
+            color: black;
+            transform: scale(1.5) rotate(10deg);
+        }
+
+        .barra-carga {
+            width: 100%;
+            height: 40px;
+            background-color: red;
+            animation: fillBar 3s infinite;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        @keyframes fillBar {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        .cargando-texto {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        .interactivo-imagen {
+            width: 300px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .interactivo-imagen:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .interactivo-image {
+            width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+
+        .interactivo-imagen p {
+            margin: 5px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="interactivo-boton">Hover me!</a>
+
+    <div class="barra-carga">
+        <div class="cargando-texto">Cargando...</div>
+    </div>
+
+    <div class="interactivo-imagen">
+        <img src="junior_h.jpeg" alt="Imagen" class="interactivo-image">
+        <p>Con ganas de postearles el TOUR ☹️, ¿dónde nos quieren ver este añito? ❤️</p>
+    </div>
+</body>
+</html>
+

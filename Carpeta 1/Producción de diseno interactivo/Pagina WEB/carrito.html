@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/png" href="logo-Sneaker.png">
+    <title>Checkout - Sneaker Glow</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            background-color: #ffffff;
+        }
+
+        #header {
+            background-color: #3591d8;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+        }
+        #header h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+        }
+        .menu {
+            width: 30px; 
+            cursor: pointer;
+        }
+        .carrito {
+            width: 30px; 
+            cursor: pointer;
+            margin-right: 20px; 
+        }
+        .despegable-menu{
+            display: none;
+            position: fixed;
+            background-color: #3591d8;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .despegable-menu a {
+            color: #ffffff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #ccc;
+        }
+        .despegable-menu a:last-child {
+            border-bottom: none;
+        }
+        .despegable-menu a:hover {
+            background-color: #ddd;
+        }
+        .despegable:hover .despegable-menu {
+            display: block;
+        }
+
+        .section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 40px 40px 40px 40px; 
+        }
+
+        .section-title {
+            margin-bottom: 10px;
+        }
+
+        #cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            display: flex; 
+            align-items: center; 
+        }
+
+        .cart-item img {
+            width: 100px; 
+            margin-right: 20px; 
+        }
+
+        .item-name, .item-size, .item-price {
+            margin-right: 20px; 
+        }
+
+        .item-price {
+            font-weight: bold; 
+        }
+
+        button {
+            width: 30%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #572364;
+            color: #ffffff;
+            cursor: pointer;
+            margin-top: 20px; 
+        }
+
+        footer {
+            background-color: #3591d8;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 0;
+            font-size: 20px;
+        }
+        .redes img {
+            width: 30px;
+            margin: 0 5px;
+        }
+        .imagen-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .imagen-container img {
+            width: 30%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-right: 20px;
+        }
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; 
+        }
+        .loading-text {
+            font-size: 24px;
+            color: #000000;
+            margin-top: 20px;
+        }
+        .logo {
+            width: 300px; 
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <img src="logo-Sneaker.png" alt="Logo de Sneaker Glow" class="logo">
+        <p class="loading-text">Cargando...</p>
+    </div>
+    <div id="header">
+        <div class="despegable">
+            <img src="hamburguesa.png" alt="Logo de Sneaker Glow" class="menu">
+            <div class="despegable-menu">
+                <a href="menu.html">Home</a>
+                <a href="formulario.html">Formulario de Servicio</a>
+                <a href="seguimiento.html">Seguimiento del Pedido</a>
+                <a href="comunidad.html">Comunidad Sneaker Head</a>
+                <a href="carrito.html">Mi Carrito</a>
+                <a href="registro.html">Iniciar Sesion</a>
+            </div>
+        </div>
+        <h1>Sneaker Glow</h1>
+        <a href="carrito.html">
+            <img src="carrito-de-compras.png" alt="Logo de Sneaker Glow" class="carrito">
+        </a>
+    </div>
+    <div class="section" id="cart-container">
+        <h2 class="section-title">Carrito de Compra</h2>
+        <div id="cart-items">
+            <div class="cart-item">
+                <img src="trainer-lv.png" alt="sneaker-1" width="50">
+                <span class="item-name">LV Trainer Sneaker</span>
+                <span class="item-size">Talla: 29</span>
+                <span class="item-price">$300</span>
+            </div>
+            <div class="cart-item">
+                <img src="https://static.nike.com/a/images/t_prod_ss/w_640,c_limit,f_auto/99209b21-d6a8-4df7-acda-2d6b46bc2e63/fecha-de-lanzamiento-del-air-jordan-4-thunder-dh6927-017.jpg" alt="sneaker-2" width="50">
+                <span class="item-name">Air Jordan 4 Thunder</span>
+                <span class="item-size">Talla: 27</span>
+                <span class="item-price">$250</span>
+            </div>
+        </div>
+        <div id="total-price">Total: $550</div>
+    </div>
+
+    <div class="section" id="summary-container">
+        <h2 class="section-title">Resumen de la Compra</h2>
+        <p>Subtotal: $550</p>
+        <p>Envío: Gratis </p>
+        <p>Total: $550</p>
+    </div>
+
+    <div class="section" id="payment-container">
+        <h2 class="section-title">Selecciona Método de Pago</h2>
+        <div id="payment-method">
+            <div class="opcion-pago">
+                <input type="radio" id="tarjeta-credito" name="opcion-pago" checked>
+                <label for="credit-card">Tarjeta de Crédito</label>
+            </div>
+            <div class="opcion-pago">
+                <input type="radio" id="paypal" name="opcion-pago">
+                <label for="paypal">PayPal</label>
+            </div>
+            <div class="opcion-pago">
+                <input type="radio" id="efectivo" name="opcion-pago">
+                <label for="efectivo">Efectivo</label>
+            </div>
+        </div>
+        <button id="submit-button">Pagar Ahora</button>
+    </div>
+    <footer>
+        <div class="contact-info">
+            <p>Contáctanos: info@sneakerglow.com</p>
+            <p>Teléfono: 5512345678</p>
+        </div>
+        <div class="redes">
+            <a href="#" target="_blank"><img src="facebook.png" alt="Facebook"></a>
+            <a href="#" target="_blank"><img src="tik-tok.png" alt="Tik Tok"></a>
+            <a href="#" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+        </div>
+    </footer>
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.display = 'none';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
+
+
+
+

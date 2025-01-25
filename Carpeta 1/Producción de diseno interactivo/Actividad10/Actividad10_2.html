@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coche en la Carretera con la Luna</title>
+  <style>
+    svg {
+      width: 100%;
+      height: auto;
+      background-color: #1E1E1E;
+    }
+
+    .elemento:hover {
+      fill: #FFD700;
+    }
+
+    .info {
+      display: none;
+      position: absolute;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      border-radius: 5px;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .elemento:hover .info {
+      display: block;
+    }
+
+    .linea-carretera {
+      fill: none;
+      stroke: white;
+      stroke-width: 4;
+      stroke-dasharray: 20 10;
+    }
+
+    .cuadro {
+      fill: rgba(0, 0, 0, 0.7);
+      stroke: white;
+      stroke-width: 2;
+      border-radius: 5px;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 800 600">
+    
+    <rect x="0" y="0" width="800" height="300" fill="#5181BB"/> 
+    <rect x="0" y="300" width="800" height="300" fill="#828282"/> 
+
+   
+    <line x1="0" y1="400" x2="800" y2="400" class="linea-carretera"/>
+
+    
+    <circle cx="800" cy="50" r="80" fill="#FFFF66" class="elemento">
+      <title class="info">Haz clic en el pequeño cuadro para ver la historia, Soy La luna.</title>
+    </circle>
+
+   
+    <circle cx="50" cy="50" r="2" fill="#FFFFFF" class="elemento"/>
+    <circle cx="150" cy="150" r="2" fill="#FFFFFF" class="elemento"/>
+    <circle cx="250" cy="50" r="2" fill="#FFFFFF" class="elemento"/>
+    <circle cx="350" cy="150" r="2" fill="#FFFFFF" class="elemento"/>
+    <circle cx="450" cy="50" r="2" fill="#FFFFFF" class="elemento"/>
+    <circle cx="550" cy="150" r="2" fill="#FFFFFF" class="elemento"/>
+    <circle cx="650" cy="50" r="2" fill="#FFFFFF" class="elemento"/>
+    <circle cx="750" cy="150" r="2" fill="#FFFFFF" class="elemento"/>
+
+    
+    <rect x="200" y="250" width="200" height="100" fill="#FF4500" class="elemento">
+      <title class="info">Haz clic en el pequeño cuadro para ver la historia, Soy un Coche.</title>
+    </rect>
+    <circle cx="220" cy="350" r="20" fill="#000000" class="elemento"/>
+    <circle cx="380" cy="350" r="20" fill="#000000" class="elemento"/>
+    <rect x="220" y="270" width="160" height="50" fill="#000000" class="elemento"/>
+
+   
+    <image xlink:href="conejo.png" x="750" y="30" width="50" height="50" class="elemento">
+      <title class="info">Haz clic en el pequeño cuadro para ver la historia, Soy un Conejo.</title>
+    </image>
+
+   
+    <rect x="40" y="200" width="80" height="80" class="cuadro"/>
+    <title class="info">Había una vez, en una noche estrellada, un coche naranja que viajaba por una carretera. La luna brillaba y iluminaba el camino del coche mientras se va por la carretera. Cada que avanzaba, el conductor del coche veía la belleza de la luna y las estrellas que están en el cielo. En una ocasión, el conductor vio la silueta de un conejo en la luna y se sorprendio.</title>
+          
+    <text x="20" y="30" fill="white">Arrastra el puntero sobre los elementos para más información.</text>
+    
+  </svg>
+</body>
+</html>
+

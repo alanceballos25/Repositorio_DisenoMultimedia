@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 12.1</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background-color:#333;
+      padding: 10px;
+      color: white;
+    }
+
+    .burger-menu {
+      cursor: pointer;
+    }
+
+
+    .menu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+    }
+
+    .menu.active {
+      display: block;
+    }
+
+    .menu li {
+      margin-bottom: 10px; 
+    }
+
+    .menu li a {
+      color: white; 
+      text-decoration: none; 
+    }
+
+    @media screen and (max-width: 768px) {
+      .burger-menu {
+        display: block;
+      }
+    }
+    .menu-imagen{
+      width: 50px; 
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="burger-menu">
+    <img src="hamburguesa.png"  class="menu-imagen">
+  </div>
+  <ul class="menu">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Acerca de</a></li>
+    <li><a href="#">Servicios</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const burgerMenu = document.querySelector('.burger-menu');
+    const menu = document.querySelector('.menu');
+
+    burgerMenu.addEventListener('click', function() {
+      menu.classList.toggle('active');
+    });
+  });
+</script>
+</body>
+</html>
