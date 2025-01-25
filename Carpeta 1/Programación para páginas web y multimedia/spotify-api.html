@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Spotify API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" type= "image/png"href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwxTN3PRhUdkM6w7Z_OlGx0iasIHfqWuAXRQypDldapw&s">
+    <style>
+   
+    body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: antiquewhite;
+    }
+
+    .btn.dropdown-toggle {
+    width: 150px;
+    text-align: center;
+    }
+
+    span.caret {
+    position: absolute;
+    left: 90%;
+    top: 45%;
+    }
+ 
+    label {
+    padding-top: 5px;
+    }
+
+    .form-label {
+    padding-left: 0px ;
+    }
+
+    .form-control {
+  border-radius: 100px;
+    }
+
+    .btn-success {
+    background-color: #3b7d4a;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    }
+
+    .btn-success:hover {
+    background-color: #4daf64;
+    }
+
+    img.track {
+    border: 3px solid #8a8a8a;
+    }
+
+    </style>
+</head>
+<body>
+    
+    <div class='container'>        
+        <form action=''>
+            
+            <input type='hidden' id='hidden_token'>
+            <div class='col-sm-6 form-group row mt-4 px-0'>
+                <label for='Genre' class='form-label col-sm-2'>Género:</label>
+                <select name='' id='select_genre' class='form-control form-control-sm col-sm-10'>
+                    <option>Seleccionar...</option>                    
+                </select>
+            </div>
+            <div class='col-sm-6 form-group row px-0'>
+                <label for='Genre' class='form-label col-sm-2'>Playlists:</label>
+                <select name='' id='select_playlist' class='form-control form-control-sm col-sm-10'>
+                    <option>Seleccionar...</option>                    
+                </select>
+            </div>                  
+            <div class='col-sm-6 row form-group px-0'>
+                <button type='submit' id='btn_submit' class='btn btn-success col-sm-12'>Buscar</button>
+            </div>          
+        </form>        
+        <div class='row'>
+            <div class='col-sm-6 px-0'>
+                <div class='list-group song-list'>
+                    
+                </div>                                             
+            </div>
+            <div class='offset-md-1 col-sm-4' id='song-detail'>                
+            </div>
+        </div>   
+    </div>
+
+
+<script>
+    const ControladorAPI = (function() {
+    
+    const clientId = '8a61692cb28548e3ad237a2472c24be6';
+    const clientSecret = '48fcf9d9b7ce43358f38741771ae5f59';
+
+    
+    const _obtenerToken = async () => {
+
+        const resultado = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/x-www-form-urlencoded', 
+                'Authorization' : 'Basic ' + btoa( clientId + ':' + clientSecret)
+            },
+            body: 'grant_type=client_credentials'
+        });
+
+        const datos = await resultado.json();
+        return datos.access_token;
+    }
+    
+    const _obtenerGeneros = async (token) => {
+
+        const resultado = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const datos = await resultado.json();
+        return datos.categories.items;
+    }
+
+    const _obtenerListaReproduccionPorGenero = async (token, idGenero) => {
+
+        const limite = 20;
+        
+        const resultado = await fetch(`https://api.spotify.com/v1/browse/categories/${idGenero}/playlists?limit=${limite}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const datos = await resultado.json();
+        return datos.playlists.items;
+    }
+
+    const _obtenerPistas = async (token, puntoFinalPistas) => {
+
+        const limite = 20;
+
+        const resultado = await fetch(`${puntoFinalPistas}?limit=${limite}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const datos = await resultado.json();
+        return datos.items;
+    }
+
+    const _obtenerPista = async (token, puntoFinalPista) => {
+
+        const resultado = await fetch(`${puntoFinalPista}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
+
+        const datos = await resultado.json();
+        return datos;
+    }
+
+    return {
+        obtenerToken() {
+            return _obtenerToken();
+        },
+        obtenerGeneros(token) {
+            return _obtenerGeneros(token);
+        },
+        obtenerListaReproduccionPorGenero(token, idGenero) {
+            return _obtenerListaReproduccionPorGenero(token, idGenero);
+        },
+        obtenerPistas(token, puntoFinalPistas) {
+            return _obtenerPistas(token, puntoFinalPistas);
+        },
+        obtenerPista(token, puntoFinalPista) {
+            return _obtenerPista(token, puntoFinalPista);
+        }
+    }
+})();
+
+
+
+const ControladorInterfazUsuario = (function() {
+
+    
+    const ElementosDOM = {
+        seleccionarGenero: '#select_genre',
+        seleccionarListaReproduccion: '#select_playlist',
+        botonEnviar: '#btn_submit',
+        divDetalleCancion: '#song-detail',
+        hfToken: '#hidden_token',
+        divListaCanciones: '.song-list'
+    }
+
+    
+    return {
+
+        
+        campoEntrada() {
+            return {
+                genero: document.querySelector(ElementosDOM.seleccionarGenero),
+                listaReproduccion: document.querySelector(ElementosDOM.seleccionarListaReproduccion),
+                pistas: document.querySelector(ElementosDOM.divListaCanciones),
+                enviar: document.querySelector(ElementosDOM.botonEnviar),
+                detalleCancion: document.querySelector(ElementosDOM.divDetalleCancion)
+            }
+        },
+
+       
+        crearGenero(texto, valor) {
+            const html = `<option value="${valor}">${texto}</option>`;
+            document.querySelector(ElementosDOM.seleccionarGenero).insertAdjacentHTML('beforeend', html);
+        }, 
+
+        crearListaReproduccion(texto, valor) {
+            const html = `<option value="${valor}">${texto}</option>`;
+            document.querySelector(ElementosDOM.seleccionarListaReproduccion).insertAdjacentHTML('beforeend', html);
+        },
+
+        
+        crearPista(id, nombre) {
+            const html = `<a href="#" class="list-group-item list-group-item-action list-group-item-light" id="${id}">${nombre}</a>`;
+            document.querySelector(ElementosDOM.divListaCanciones).insertAdjacentHTML('beforeend', html);
+        },
+
+        
+        crearDetalleCancion(img, titulo, artista) {
+
+            const detalleDiv = document.querySelector(ElementosDOM.divDetalleCancion);
+           
+            detalleDiv.innerHTML = '';
+        
+            const html = 
+            `
+            <div class="row col-sm-12 px-0">
+                <img src="${img}" alt="" style="width: 300px;">        
+            </div>
+            <div class="row col-sm-12 px-0">
+                <label for="Genero" class="form-label col-sm-12" style="font-size: 30px;">${titulo}</label>
+            </div>
+            <div class="row col-sm-12 px-0">
+                <label for="artista" class="form-label col-sm-12" style="color: black;" style="font-size.30px;"> Interpretada por: ${artista}</label>
+            </div> 
+            `;
+        
+            detalleDiv.insertAdjacentHTML('beforeend', html)
+        },
+        
+
+        resetearDetalleCancion() {
+            this.campoEntrada().detalleCancion.innerHTML = '';
+        },
+
+        resetearPistas() {
+            this.campoEntrada().pistas.innerHTML = '';
+            this.resetearDetalleCancion();
+        },
+
+        resetearListaReproduccion() {
+            this.campoEntrada().listaReproduccion.innerHTML = '';
+            this.resetearPistas();
+        },
+        
+        almacenarToken(valor) {
+            document.querySelector(ElementosDOM.hfToken).value = valor;
+        },
+
+        obtenerTokenAlmacenado() {
+            return {
+                token: document.querySelector(ElementosDOM.hfToken).value
+            }
+        }
+    }
+
+})();
+
+const ControladorApp = (function(ControladorInterfazUsuario, ControladorAPI) {
+
+ 
+    const ElementosDOM = ControladorInterfazUsuario.campoEntrada();
+
+   
+    const cargarGeneros = async () => {
+        
+        const token = await ControladorAPI.obtenerToken();           
+        
+        ControladorInterfazUsuario.almacenarToken(token);
+      
+        const generos = await ControladorAPI.obtenerGeneros(token);
+        
+        generos.forEach(elemento => ControladorInterfazUsuario.crearGenero(elemento.name, elemento.id));
+    }
+
+    
+    ElementosDOM.genero.addEventListener('change', async () => {
+        
+        ControladorInterfazUsuario.resetearListaReproduccion();
+       
+        const token = ControladorInterfazUsuario.obtenerTokenAlmacenado().token;        
+        
+        const seleccionGenero = ControladorInterfazUsuario.campoEntrada().genero;       
+       
+        const idGenero = seleccionGenero.options[seleccionGenero.selectedIndex].value;             
+       
+        const listaReproduccion = await ControladorAPI.obtenerListaReproduccionPorGenero(token, idGenero);       
+       
+        listaReproduccion.forEach(p => ControladorInterfazUsuario.crearListaReproduccion(p.name, p.tracks.href));
+    });
+     
+
+   
+    ElementosDOM.enviar.addEventListener('click', async (e) => {
+       
+        e.preventDefault();
+        
+        ControladorInterfazUsuario.resetearPistas();
+        
+        const token = ControladorInterfazUsuario.obtenerTokenAlmacenado().token;        
+       
+        const seleccionListaReproduccion = ControladorInterfazUsuario.campoEntrada().listaReproduccion;
+       
+        const puntoFinalPistas = seleccionListaReproduccion.options[seleccionListaReproduccion.selectedIndex].value;
+       
+        const pistas = await ControladorAPI.obtenerPistas(token, puntoFinalPistas);
+        
+        pistas.forEach(el => ControladorInterfazUsuario.crearPista(el.track.href, el.track.name))
+        
+    });
+
+    
+    ElementosDOM.pistas.addEventListener('click', async (e) => {
+      
+        e.preventDefault();
+        ControladorInterfazUsuario.resetearDetalleCancion();
+        
+        const token = ControladorInterfazUsuario.obtenerTokenAlmacenado().token;
+        
+        const puntoFinalPista = e.target.id;
+        
+        const pista = await ControladorAPI.obtenerPista(token, puntoFinalPista);
+        
+        ControladorInterfazUsuario.crearDetalleCancion(pista.album.images[1].url, pista.name, pista.artists[0].name);
+    });    
+
+    return {
+        iniciar() {
+            console.log('La aplicación está comenzando');
+            cargarGeneros();
+        }
+    }
+
+})(ControladorInterfazUsuario, ControladorAPI);
+
+
+ControladorApp.iniciar();
+
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+</body>
+</html>

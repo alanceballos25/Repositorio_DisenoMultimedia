@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esta es mi pagina 1</title>
+</head>
+<body>
+    <h1>Esta es la página 1</h1>
+    <a href="page_2.html">Ir a página 2</a>
+    <a href="page_3.html">Ir a página 3</a>
+
+    <script>
+        function calcularAreaPerimetroCirculo(radio) {
+            console.log("estoy calculando el radio");
+            // inserte todo el codigo necesario...
+            const pi = 3.1416;
+            const area = pi * radio * radio;
+            const perimetro = 2 * pi * radio;
+            console.log("el area del circulo es", area);
+            console.log("el perimetro del circulo es", perimetro);
+        }
+
+
+        // calcularAreaPerimetroCirculo(5)
+        // calcularAreaPerimetroCirculo(10)
+        // calcularAreaPerimetroCirculo(50)
+
+        function callThisFirst() {
+            console.log("Este mensaje se llama primero");
+        }
+        function callThisAfter() {
+           return setTimeout(function () {
+            console.log("Este mensaje se llama despúes");
+            
+           }, 2000);
+        }
+        function callThisLast() {
+            console.log("Este mensaje se llama al final");
+        }
+
+        callThisFirst()
+        callThisAfter()
+        callThisLast()
+    </script>
+</body>
+</html>

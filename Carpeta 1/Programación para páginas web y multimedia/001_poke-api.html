@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poke API</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="icon" type= "image/png"href="https://i.pinimg.com/originals/c7/d7/02/c7d70249300e5473a14ded83c694d242.png">
+
+    <style>
+        body{
+            background-color: #00AAE4;
+        }
+        .pokemon-card {
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px;
+            width: 300px;
+            text-align: center; 
+            color: white;
+        }
+
+        .pokemon-img {
+            max-width: 100%;
+            margin-bottom: 10px; 
+        }
+
+        .paginacion {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pokemon-name {
+            margin-bottom: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center my-4">Poke API</h1>
+
+    <div id="pokemon-container" class="d-flex flex-wrap justify-content-center">
+        
+    </div>
+
+    <div class="paginacion">
+        <button id="prev-btn" type="button" class="btn btn-primary me-2">Previous</button>
+        <button id="next-btn" type="button" class="btn btn-primary">Next</button>
+    </div>
+    
+
+    <script>
+        let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=8';
+        let prevUrl = '';
+        let nextUrl = '';
+
+        const fetchPokemons = (url) => {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    prevUrl = data.previous;
+                    nextUrl = data.next;
+                    displayPokemons(data.results);
+                })
+                .catch(error => console.error('Error fetching pokemons:', error));
+        };
+
+        const displayPokemons = (pokemons) => {
+            const container = document.getElementById('pokemon-container');
+            container.innerHTML = '';
+
+            pokemons.forEach(pokemon => {
+                fetch(pokemon.url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const pokemonDiv = document.createElement('div');
+                        pokemonDiv.classList.add('pokemon-card');
+
+                        const name = document.createElement('h3');
+                        name.classList.add('pokemon-name'); 
+                        name.textContent = data.name;
+                        pokemonDiv.appendChild(name);
+
+                        const image = document.createElement('img');
+                        image.classList.add('pokemon-img');
+                        image.src = data.sprites.front_default;
+                        pokemonDiv.appendChild(image);
+
+                        const species = document.createElement('p');
+                        species.textContent = `Especie: ${data.species.name}`;
+                        pokemonDiv.appendChild(species);
+
+                        const types = document.createElement('p');
+                        types.textContent = `Tipos: ${data.types.map(type => type.type.name).join(', ')}`;
+                        pokemonDiv.appendChild(types);
+
+                        const stats = document.createElement('p');
+                        stats.textContent = `Estadísticas: ${data.stats.map(stat => `${stat.stat.name}: ${stat.base_stat}`).join(', ')}`;
+                        pokemonDiv.appendChild(stats);
+
+                        container.appendChild(pokemonDiv);
+                    });
+            });
+        };
+
+        document.getElementById('prev-btn').addEventListener('click', (event) => {
+        event.preventDefault();
+        if (prevUrl) {
+        fetchPokemons(prevUrl);
+        }
+});
+
+        document.getElementById('next-btn').addEventListener('click', (event) => {
+        event.preventDefault();
+        if (nextUrl) {
+        fetchPokemons(nextUrl);
+        }
+});
+
+
+        fetchPokemons(apiUrl);
+    </script>
+</body>
+</html>
