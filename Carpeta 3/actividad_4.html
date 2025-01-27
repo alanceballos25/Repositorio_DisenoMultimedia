@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 4</title>
+    <style>
+        button {
+            background-color: rgb(224, 152, 20);
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        button:hover {
+            background-color: rgb(128, 64, 0);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 5px;
+            gap: 5px;
+        }
+
+        .button-transformacion {
+            transition: transform 0.3s ease;
+        }
+
+        .button-transformacion:hover {
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+
+<body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const divs = document.querySelectorAll('.button-container');
+
+        function changeBackgroundColor(index) {
+            const body = divs[index];
+            const colors = [
+                ["#ff9999", "#99ff99", "#9999ff"],
+                ["#ffcc99", "#ccffcc", "#ccccff"],
+                ["#ff6666", "#66ff66", "#6666ff"],
+                ["#ff9966", "#99ffcc", "#9966ff"],
+                ["#ff7966", "#66ff66", "#9932ff"]
+            ];
+            let currentIndex = 0;
+
+            setInterval(() => {
+                body.style.backgroundColor = colors[index][currentIndex];
+                currentIndex = (currentIndex + 1) % colors[index].length;
+            }, 5000);
+        }
+
+        for (let i = 0; i < divs.length; i++) {
+            changeBackgroundColor(i);
+        }
+    });
+</script>
+
+<div class="button-container">
+    <button>Bot&oacute;n A</button>
+    <button>Bot&oacute;n B</button>
+    <button>Bot&oacute;n C</button>
+    <button>Bot&oacute;n D</button>
+    <button class="button-transformacion">Bot&oacute;n E</button>
+</div>
+
+<div class="button-container">
+    <button>Bot&oacute;n A</button>
+    <button>Bot&oacute;n B</button>
+    <button>Bot&oacute;n C</button>
+    <button class="button-transformacion">Bot&oacute;n D</button>
+    <button>Bot&oacute;n E</button>
+</div>
+
+<div class="button-container">
+    <button>Bot&oacute;n A</button>
+    <button>Bot&oacute;n B</button>
+    <button class="button-transformacion" >Bot&oacute;n C</button>
+    <button>Bot&oacute;n D</button>
+    <button>Bot&oacute;n E</button>
+</div>
+
+<div class="button-container">
+    <button>Bot&oacute;n A</button>
+    <button class="button-transformacion">Bot&oacute;n B</button>
+    <button>Bot&oacute;n C</button>
+    <button>Bot&oacute;n D</button>
+    <button>Bot&oacute;n E</button>
+</div>
+
+<div class="button-container">
+    <button class="button-transformacion" >Bot&oacute;n A</button>
+    <button>Bot&oacute;n B</button>
+    <button>Bot&oacute;n C</button>
+    <button>Bot&oacute;n D</button>
+    <button>Bot&oacute;n E</button>
+</div>
+
+</body>
+
+</html>
+
+
+
+
